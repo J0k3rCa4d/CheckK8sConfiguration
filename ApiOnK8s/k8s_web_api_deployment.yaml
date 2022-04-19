@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-api-deployment
+  labels: 
+    app: web-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-api
+  template:
+    metadata:
+      labels:
+        app: web-api
+    spec:
+      containers:
+        - name: web-api-k8s
+          image: web-api-k8s
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          env:
+           - name: my-key-vault-uri
+             value: "https://localhost/key-vault"
+           - name: my-DEMO_GREETING
+             value: "Hello from the environment"
+           - name: my-DEMO_FAREWELL
+             value: "Such a sweet sorrow"

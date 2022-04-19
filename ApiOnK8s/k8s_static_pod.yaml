@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configuration
+  labels:
+    app: configuration
+spec:
+  containers:
+  - name: configuration
+    image: web-api-k8s
+    imagePullPolicy: Never
+    ports:
+    - containerPort: 80
+    env:
+    - name: my-key-vault-uri
+      value: "https://localhost/key-vault"
